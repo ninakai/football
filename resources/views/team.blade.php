@@ -41,7 +41,7 @@
                     @endif
                     <a/>
                 </td>
-                <td> /(.-.)\ </td>
+                <td>{{ $game->score }}</td>
             </tr>
         @endforeach
     </table>
