@@ -28,6 +28,7 @@
         </tr>
     @endforeach
 </table>
+<p>{{ $games->links() }}</p>
 </body>
 </html>
 

@@ -11,10 +11,11 @@ class GameController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $perpage = $request->perpage ?? 2;
         return view('games', [
-            'games' => Game::all()
+            'games' => Game::paginate($perpage)->withQueryString()
         ]);
     }
 
