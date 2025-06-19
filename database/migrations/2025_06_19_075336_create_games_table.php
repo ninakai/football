@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('team1_id')->references('id')->on('teams');
             $table->foreignId('team2_id')->references('id')->on('teams');
+            $table->string('score')->nullable()->change();
             $table->timestamps();
         });
     }
