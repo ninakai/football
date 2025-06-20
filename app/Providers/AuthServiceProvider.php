@@ -3,29 +3,20 @@
 namespace App\Providers;
 
 use App\Models\Game;
-use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Auth\Access\Gate;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Pagination\Paginator;
 
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Auth;
 
-class AppServiceProvider extends ServiceProvider
+class AuthServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
-    public function register(): void
+
+    public function register():void
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
+    public function boot():void
     {
         Paginator::defaultView('pagination::default');
 

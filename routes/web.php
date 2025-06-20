@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\GameController;
@@ -20,10 +21,20 @@ Route::get('/players', [PlayerController::class, 'index']);
 
 Route::get('/games', [GameController::class, 'index']);
 Route::post('/games', [GameController::class, 'store']);
-Route::get('/game/create', [GameController::class, 'create']);
-Route::get('/game/edit/{id}', [GameController::class, 'edit']);
+Route::get('/game/create', [GameController::class, 'create'])->middleware('auth');
+Route::get('/game/edit/{id}', [GameController::class, 'edit'])->middleware('auth');
 Route::get('/game/{id}', [GameController::class, 'show']);
-Route::put('/game/update/{id}', [GameController::class, 'update']);
-Route::get('/game/destroy/{id}', [GameController::class, 'destroy']);
+Route::put('/game/update/{id}', [GameController::class, 'update'])->middleware('auth');
+Route::get('/game/destroy/{id}', [GameController::class, 'destroy'])->middleware('auth');
 
 Route::get('/goals', [GoalController::class, 'index']);
+
+
+Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::get('/logout', [LoginController::class, 'logout'])->name('login');
+Route::post('/auth', [LoginController::class, 'authenticate']);
+Route::post('/register', [LoginController::class, 'register']);
+
+Route::get('/error', function () {
+    return view('error', ['message' => session('message')]);
+});

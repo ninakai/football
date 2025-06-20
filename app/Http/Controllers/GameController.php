@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Team;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
@@ -65,6 +66,13 @@ class GameController extends Controller
      */
     public function edit(string $id)
     {
+        $game = Game::findOrFail($id);
+
+        if (! Gate::allows('edit-game', $game)) {
+            return redirect('/error')->with('message',
+                'У вас нет разрешения на редактирование игры ' . $id);
+        }
+
         return view('game_edit', [
             'game' => Game::all()->where('id', $id)->first(),
             'teams' => Team::all()
@@ -98,6 +106,13 @@ class GameController extends Controller
      */
     public function destroy(string $id)
     {
+        $game = Game::findOrFail($id);
+
+        if (! Gate::allows('destroy-game', $game)) {
+            return redirect('/error')->with('message',
+                'У вас нет разрешения на удаление игры ' . $id);
+        }
+
         Game::destroy($id);
         return redirect('/games');
     }
