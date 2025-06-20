@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>609-21</title>
-</head>
-<body>
+@extends('layout')
+@section('content')
+
+    <body>
 <h2>{{ $games ? "Games:" : 'No data'}}</h2>
 <a href="/game/create">Add Game</a>
 <table border="1">
@@ -28,7 +25,12 @@
         </tr>
     @endforeach
 </table>
-<p>{{ $games->links() }}</p>
+<div class="justify-content-center">
+    <div class="d-flex flex-column">
+        {{ $games->links() }}
+    </div>
+</div>
 </body>
 </html>
+@endsection
 

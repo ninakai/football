@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create New Game</title>
-</head>
-<body>
+@extends('layout')
+@section('content')
+
 <h1>Create New Game</h1>
 
 <form action="/games" method="POST">
@@ -19,7 +14,7 @@
             @endforeach
         </select>
         @error('team1_id')
-            <div class="is-invalid">{{ $message }}</div>
+        <div class="is-invalid">{{ $message }}</div>
         @enderror
     </div>
 
@@ -31,7 +26,7 @@
             @endforeach
         </select>
         @error('team2_id')
-            <div class="is-invalid">{{ $message }}</div>
+        <div class="is-invalid">{{ $message }}</div>
         @enderror
     </div>
 
@@ -42,5 +37,5 @@
 
     <button type="submit">Create Game</button>
 </form>
-</body>
-</html>
+@endsection
+

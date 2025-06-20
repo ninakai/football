@@ -31,9 +31,17 @@ Route::get('/goals', [GoalController::class, 'index']);
 
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
-Route::get('/logout', [LoginController::class, 'logout'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/auth', [LoginController::class, 'authenticate']);
 Route::post('/register', [LoginController::class, 'register']);
+
+
+Route::get('/', function () {
+    return view('games');
+})->name('games');
+
 
 Route::get('/error', function () {
     return view('error', ['message' => session('message')]);

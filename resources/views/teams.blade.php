@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>609-21</title>
-</head>
-<body>
+@extends('layout')
+@section('content')
+
     <h2>Team list:</h2>
     <table border="1">
         <tr>
@@ -18,6 +14,5 @@
         </tr>
         @endforeach
     </table>
-</body>
-</html>
+@endsection
 

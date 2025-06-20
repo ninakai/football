@@ -26,7 +26,7 @@ class GameController extends Controller
     public function create()
     {
         return view('game_create', [
-            'games' => Game::all(),
+            'games' => Game::all()->all(),
             'teams' => Team::all()
         ]);
     }
@@ -69,8 +69,8 @@ class GameController extends Controller
         $game = Game::findOrFail($id);
 
         if (! Gate::allows('edit-game', $game)) {
-            return redirect('/error')->with('message',
-                'У вас нет разрешения на редактирование игры ' . $id);
+            return redirect('/games')->withErrors(['error' =>
+                'У вас нет разрешения на редактирование игры ']);
         }
 
         return view('game_edit', [
@@ -109,11 +109,12 @@ class GameController extends Controller
         $game = Game::findOrFail($id);
 
         if (! Gate::allows('destroy-game', $game)) {
-            return redirect('/error')->with('message',
-                'У вас нет разрешения на удаление игры ' . $id);
+            return redirect('/games')->withErrors(['error' =>
+                'У вас нет разрешения на удаление игры ']);
         }
 
         Game::destroy($id);
-        return redirect('/games');
+        return redirect('/games')->withErrors(['success' => 'Game deleted successfully!']);
     }
+
 }

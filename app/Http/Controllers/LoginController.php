@@ -13,8 +13,9 @@ class LoginController extends Controller
 {
     public function login(Request $request)
     {
-        return view('login', ['user'=> Auth::user()]);
-
+        return redirect('/teams')->withErrors([
+            'success' => 'Вы успешно вошли в систему',
+        ]);
     }
 
     public function logout(Request $request): RedirectResponse
@@ -24,7 +25,7 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/games')->withErrors([
-            'success' => 'Вы успешно вышли из системы',
+            'success2' => 'Вы успешно вышли из системы',
         ]);
     }
     public function authenticate(Request $request)

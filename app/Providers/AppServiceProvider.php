@@ -3,8 +3,6 @@
 namespace App\Providers;
 
 use App\Models\Game;
-use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Auth\Access\Gate;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
@@ -40,5 +38,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('create-game', function ($user) {
             return $user->name === 'admin';
         });
+
+        View::share('user', Auth::user());
     }
 }

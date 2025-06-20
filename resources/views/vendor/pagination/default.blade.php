@@ -1,6 +1,6 @@
 @if ($paginator->hasPages())
     <nav>
-        <ul class="pagination" style="display:inline-block;">
+        <ul class="pagination">
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
                 <li class="disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
@@ -43,14 +43,13 @@
             @endif
         </ul>
     </nav>
-    <form class="form-check" method="get" action={{url('/games/')}}>
-        <label for="perpage" class="mr-2">Items per page:</label>
+
+    <form class="form-check" method="get" action={{url('games')}}>
         <select class="dropdown" name="perpage">
             <option value="2" @if($paginator->perPage()==2) selected @endif >2</option>
             <option value="3" @if($paginator->perPage()==3) selected @endif >3</option>
             <option value="4" @if($paginator->perPage()==4) selected @endif >4</option>
         </select>
-        <button type="submit" class="btn btn-primary">Apply</button>
+        <button type="submit" class="btn btn-primary">Изменить</button>
     </form>
 @endif
-

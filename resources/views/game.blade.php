@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>609-21</title>
-</head>
-<body>
-<h2>{{$game ? $game->team1->name." - ".$game->team2->name." overview" : 'Wrong team id' }}</h2>
+@extends('layout')
+@section('content')
+
+    <h2>{{$game ? $game->team1->name." - ".$game->team2->name." overview" : 'Wrong team id' }}</h2>
 @if($game)
     <table border="1">
         <tr>
@@ -22,6 +18,5 @@
         @endforeach
     </table>
 @endif
-</body>
-</html>
+@endsection
 
